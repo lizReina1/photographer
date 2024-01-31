@@ -9,27 +9,37 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
 class MailNotify extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $data=[];
-    /**
-     * Create a new message instance.
-     */
+    public $subject;
+    public $qrPath;
+    
+    //Array $data received from EmailController->sendEmail
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->subject  = $data['subject'];
+        $this->qrPath   = $data['qr'];
     }
+
+   
 
     public function build()
     {
-        return $this
-            ->subject('Mail Notify')  // Asunto del correo electrónico
-            ->view('correo')       // Vista Blade para el contenido del correo electrónico
-            ->with('data', $this->data);  // Pasar datos a la vista
+        return $this->view('correo')
+            ->subject($this->subject)
+            ->attach(public_path($this->qrPath), [
+                'as'   => 'codigo_qr.png',
+                'mime' => 'image/png',
+            ]);
     }
+    
 
+    
+
+    
     /**
      * Get the message envelope.
      */

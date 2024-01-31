@@ -83,7 +83,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="https://media.istockphoto.com/photos/beautiful-woman-wearing-brown-curly-hairstyle-picture-id495006065?s=170x170" class="me-3" alt="Warren Briggs" style="max-width: 50px; border-radius: 50%;">
+                                                    <img src="images/diseno-web-fotografos.jpg" class="me-3" alt="Warren Briggs" style="max-width: 50px; border-radius: 50%;">
                                                     <div class="flex-grow-1">
                                                         <h6 class="my-0">{{$fotografos->nombre}}</h6>
 

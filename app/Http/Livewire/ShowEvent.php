@@ -47,8 +47,8 @@ class ShowEvent extends Component
     ];
 
     public function render()
-    {    
-       return view('livewire.show-event');
+    {
+        return view('livewire.show-event');
     }
 
     public function mount($evento_id)
@@ -59,7 +59,7 @@ class ShowEvent extends Component
         $invitados = Evento::find($this->evento_id);
         $this->getInvitados = $invitados->invitados;
 
-       /*  $fotografos = Fotografo::find($this->evento_id);
+        /*  $fotografos = Fotografo::find($this->evento_id);
         $this->fotografoAll = $fotografos->fotografos; */
     }
 
@@ -163,34 +163,43 @@ class ShowEvent extends Component
     }
 
 
-    public function enviarEmail($mensaje)
+    public function enviarEmail($invitado,$mensaje)
     { 
+        // Genera el código QR
+        $qr = QrCode::format('png')->size(200)->generate(route('event.generar', $mensaje));
+    
+        // Genera un nombre único para el archivo basado en la marca de tiempo
+        $qrFileName = 'qrcode_evento_' . time() . '.png';
+    
+        // Almacena el código QR en el sistema de archivos
+        $qrPath = 'images/' . $qrFileName;
+        file_put_contents(public_path($qrPath), $qr);
+    
         $data = [
-            'name' => 'Nombre del destinatario',
-            'email' => 'correo@example.com',
-            'qr'  => $mensaje,
+            'subject'   => 'invitacion',
+            'email'     => $invitado,
+            'qr'        => $qrPath,  // Almacena la ruta en lugar del código QR directamente
         ];
-     /*    dd($mensaje, 
-        QrCode::size(150)->generate(route('event.generar', $data['qr'] ))
-   ); */
+    
         $email = new MailNotify($data);
-
+    
         // Configura el remitente utilizando el método from en la instancia de Mailable
         $email->from('lizreina.rq@gmail.com', 'Nombre del Remitente');
-
+    
+       
         // Envia el correo electrónico
-        Mail::to('lizreina.rq@gmail.com')->send($email);
-
+        Mail::to($invitado)->send($email);
+    
         return response()->json(['message' => 'Correo electrónico enviado con éxito']);
     }
+    
 
-
-    public function contratos($fotografo_id, $organizador_id){
+    public function contratos($fotografo_id, $organizador_id)
+    {
         organizador_fotografo::create([
             'evento_id' => $this->evento_id,
             'fotografo_id' => $fotografo_id,
             'organizador_id' => $organizador_id
         ]);
     }
-
 }
