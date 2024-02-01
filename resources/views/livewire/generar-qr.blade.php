@@ -64,7 +64,9 @@
                                     LUGAR: {{ $event->lugar }}
                                 </h5>
                                 <h5 class="card-caption">
-                                    <a href="https://www.ejemplo.com">INGRESA AQUI: para anotar tu asistencia</a>
+                                <div id="qrcode-container text-center">
+                                                <p class="card-text">{{ QrCode::size(150)->generate(route('event.generar', $event->id)) }}</p>
+                                            </div>
                                 </h5>
                                 <div class="ftr">
                                     <div class="stats"> <i class="fa fa-date-o"></i> FECHA: {{ $event->fecha }} </div>

@@ -55,8 +55,13 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td align="center" class="esd-block-text es-m-txt-c">
-                                                                                        <h1 style="color: #003186;">hola, Te invito a mi evento </h1>
-                                                                                        <a href="www.google.com">marcar asistencia</a>
+                                                                                        <h2 style="color: #000000;"> hola!!!  </h2>
+                                                                                        <h2 style="color: #003186;"> Te invito a mi evento </h2>
+                                                                                        <h3 style="color: #003186;"> Tema del evento: {{$invitacion->tema}} </h3>
+                                                                                        <h3 style="color: #003186;"> Se realizara en: {{$invitacion->lugar}} </h3>
+                                                                                        <h3 style="color: #003186;"> Hora: {{$invitacion->hora}}, Fecha: {{$invitacion->fecha}}</h3>
+                                                                                        <h1 style="color: #003186;"> Te esperamos!!!</h1>
+                                                                                        <a style="color: #000000;" href="www.google.com">marcar asistencia</a>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>

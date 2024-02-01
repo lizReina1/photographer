@@ -161,6 +161,7 @@ class EventComponent extends Component
         return view('livewire.generar-qr', compact('event'));
     }
 
+
     public function sumar()
     {
         $this->emit('logro10');

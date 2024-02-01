@@ -19,6 +19,8 @@
                                     <div class="stats"> <i class="fa fa-clock-o"></i> {{$evento->hora }} </div>
 
                                 </small></p>
+                                <a href="{{ route('lista-invitados-component.render', ['idEvento' => $evento->id]) }}" type="button" class="btn btn-success rounded-pill">Lista de Invitados</a>
+
                         </div>
                     </div>
 
@@ -36,6 +38,7 @@
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
                                         add invitado
                                     </button>
+
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     @foreach ($getInvitados as $getInvitados)
@@ -48,6 +51,7 @@
                                                     <div class="flex-grow-1">
                                                         <h6 class="my-0">{{$getInvitados->nombre}}</h6>
                                                         <h6 class="my-0">{{$getInvitados->correo_invitado}}</h6>
+                                                        <a href="{{ route('event-invitado-acept.render', ['correo' => $getInvitados->correo_invitado,'idEvento' => $evento->id]) }}">Aceptar Invitación</a>
 
                                                         <p class="small m-0">
                                                             @if ($getInvitados->estado_asistencia == 'true')

@@ -15,13 +15,18 @@ class MailNotify extends Mailable
     use Queueable, SerializesModels;
 
     public $subject;
+    public $emailInvitado;
     public $qrPath;
+    public $invitacion;
     
     //Array $data received from EmailController->sendEmail
     public function __construct($data)
     {
         $this->subject  = $data['subject'];
+        $this->emailInvitado = $data['email'];
         $this->qrPath   = $data['qr'];
+        $this->invitacion   = $data['invitacion'];
+
     }
 
    
@@ -29,7 +34,7 @@ class MailNotify extends Mailable
     public function build()
     {
         return $this->view('correo')
-            ->subject($this->subject)
+            ->subject($this->subject,$this->emailInvitado,$this->invitacion)
             ->attach(public_path($this->qrPath), [
                 'as'   => 'codigo_qr.png',
                 'mime' => 'image/png',

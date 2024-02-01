@@ -3,6 +3,7 @@
 use App\Http\Livewire\EventComponent;
 use App\Http\Livewire\EventInvitadoAceptComponent;
 use App\Http\Livewire\EventoComponent;
+use App\Http\Livewire\ListaInvitadosComponent;
 use App\Http\Livewire\ShowEvent;
 use App\Http\Livewire\ShowEventos;
 use Illuminate\Support\Facades\Route;
@@ -44,8 +45,10 @@ Route::middleware([
     Route::get('catalogo', EventoComponent::class)->name('catalogo-fotograafo.render');
     Route::get('generarqr/{id}', [EventComponent::class, 'generar'])->name('event.generar');
 
-    Route::get('aceptInvitacion/{correo}',[EventInvitadoAceptComponent::class,'aceptarInvitacion'])->name('event-invitado-acept.render');
+    Route::get('/aceptar-invitacion/{correo}/{idEvento}',EventInvitadoAceptComponent::class)
+    ->name('event-invitado-acept.render');
 
+    Route::get('listaInvitados/{idEvento}',ListaInvitadosComponent::class)->name('lista-invitados-component.render');
 
  /*    Route::get('/generarqr/{id}', function () {
         return view('livewire.generar-qr');

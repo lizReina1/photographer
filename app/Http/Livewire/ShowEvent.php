@@ -178,7 +178,8 @@ class ShowEvent extends Component
         $data = [
             'subject'   => 'invitacion',
             'email'     => $invitado,
-            'qr'        => $qrPath,  // Almacena la ruta en lugar del código QR directamente
+            'qr'        => $qrPath, 
+            'invitacion' => Evento::find($mensaje),
         ];
     
         $email = new MailNotify($data);
