@@ -61,6 +61,8 @@
                                                                                         <h3 style="color: #003186;"> Se realizara en: {{$invitacion->lugar}} </h3>
                                                                                         <h3 style="color: #003186;"> Hora: {{$invitacion->hora}}, Fecha: {{$invitacion->fecha}}</h3>
                                                                                         <h1 style="color: #003186;"> Te esperamos!!!</h1>
+                                                                                        <a href="{{ route('event-invitado-acept.render', ['correo' => $emailInvitado,'idEvento' => $invitacion->id]) }}">Aceptar Invitación</a>
+
                                                                                         <a style="color: #000000;" href="www.google.com">marcar asistencia</a>
                                                                                     </td>
                                                                                 </tr>
